@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Auth\Events\Registered;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +26,8 @@ class DatabaseSeeder extends Seeder
         $role = Role::create(['name' => 'super-admin']);
 
         $admin->assignRole('super-admin');
+
+        event(new Registered($admin));
 
     }
 }

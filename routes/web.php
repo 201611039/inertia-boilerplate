@@ -5,6 +5,6 @@ use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware('auth:sanctum')->get('/', function () {
+Route::middleware(['auth:sanctum'])->get('/', function () {
     return Inertia::render('dashboard');
 });

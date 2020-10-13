@@ -15,13 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Inertia::share([
-            'errors' => function () {
-                return Session::get('errors')
-                    ? Session::get('errors')->getBag('default')->getMessages()
-                    : (object) [];
-            },
-        ]);
+
     }
 
     /**
@@ -31,6 +25,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Inertia::share([
+            'errors' => function () {
+                return Session::get('errors')
+                    ? Session::get('errors')->getBag('default')->getMessages()
+                    : (object) [];
+            },
 
+            'state' => function () {
+                return Session::get('status')??'';
+            }
+        ]);
     }
 }
