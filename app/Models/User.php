@@ -18,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $fillable = [
+    protected $guarded = [
         'id'
     ];
 
@@ -40,4 +40,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRoleNameAttribute()
+    {
+        return $this->getRoleNames()->first();
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

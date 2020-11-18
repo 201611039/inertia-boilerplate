@@ -35,22 +35,22 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         Fortify::loginView(function () {
-            return Inertia::render('Auth/login');
+            return Inertia::render('Auth/Login');
         });
 
         Fortify::requestPasswordResetLinkView(function () {
-            return Inertia::render('Auth/password-reset');
+            return Inertia::render('Auth/PasswordReset');
         });
 
         Fortify::resetPasswordView(function ($request) {
-            return Inertia::render('Auth/reset-password', [
+            return Inertia::render('Auth/ResetPassword', [
                 'email' => $request->email,
                 'token' => $request->route('token')
                 ]);
         });
 
         // Fortify::verifyEmailView(function () {
-        //     return Inertia::render('Auth/verify-email');
+        //     return Inertia::render('Auth/VerifyEmail');
         // });
     }
 }
